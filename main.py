@@ -3,9 +3,10 @@ import matplotlib.pyplot as plt
 import yfinance as yf
 import strategy as st
 import backtest as bt
+import analyze as al
 
 
-initial_cash = input("Enter the cash to begin with: ")
+initial_cash = float(input("Enter the cash to begin with: "))
 ticker = input("Enter the stock you want to analyze\nOptions are: AAPL, MSFT, TSLA, GOOGL, AMZN, NVDA, JPM, BAC, TSLA, XOM, JNJ: ")
 
 # create a data frame
@@ -22,6 +23,12 @@ df = bt.backtest_strategy(df, initial_cash)
 
 # check the strategy
 print(df.tail(30))
+
+# print the total return
+print(f"The total return is ${al.total_return(initial_cash, df):.2f}")
+
+# print the max drawdown
+print(f"The max drawdown would be: {al.calculate_max_drawdown(df):.2f}%")
 
 # plot SMAs and portfolio values over price
 df.plot(y = ['Portfolio Value'])
