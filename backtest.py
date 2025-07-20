@@ -1,6 +1,6 @@
 # the backtest engine
-def backtest_strategy(df, initial_cash = 10000):
-    cash = initial_cash
+def backtest_strategy(df, initial_cash):
+    cash = int(initial_cash)
     portfolio = []
     holdings = 0
 
